@@ -1,0 +1,15 @@
+{
+  "settingsCategories": {
+    "VideoHelperSuite": "VideoHelperSuite",
+    "Advanced Previews": "Розширені попередні перегляди",
+    "Preview Quality": "Якість попереднього перегляду",
+    "Video Options": "Відео опції"
+  },
+  "menuItems": {
+    "Open preview": "Відкрити попередній перегляд",
+    "Save preview": "Зберегти попередній перегляд",
+    "Copy output filepath": "Копіювати шлях до виводу",
+    "Save workflow image": "Зберегти зображення робочого процесу",
+    "Sync preview": "Синхронізувати попередній перегляд"
+  }
+}

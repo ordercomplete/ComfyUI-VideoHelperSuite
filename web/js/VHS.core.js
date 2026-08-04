@@ -1803,96 +1803,16 @@ function mouseAnnotated(event, [x, y], node) {
     return true
 }
 let latentPreviewNodes = new Set()
+
+// Import translated settings from VHS.settings.js (i18n support)
+import { getTranslatedSettings } from './VHS.settings.js'
+
 app.registerExtension({
     name: "VideoHelperSuite.Core",
-    settings: [
-      {
-        id: 'VHS.AdvancedPreviews',
-        category: ['🎥🅥🅗🅢', 'Previews', 'Advanced Previews'],
-        name: 'Advanced Previews',
-        tooltip: 'Automatically transcode previews on request. Required for advanced functionality',
-        type: 'combo',
-        options: ['Never', 'Always', 'Input Only'],
-        defaultValue: 'Input Only',
-      },
-      {
-        id: 'VHS.AdvancedPreviewsMinWidth',
-        category: ['🎥🅥🅗🅢', 'Previews', 'Min Width'],
-        name: 'Minimum preview width',
-        tooltip: 'Advanced previews have their resolution downscaled to the node size for performance. While a node can be resized to increase preview quality, a minimum width can be set that previews won\'t be downscaled beneath. Preveiws will never be upscaled, so this can safely be set large.',
-        type: 'number',
-        attrs: {
-          min: 0,
-          step: 1,
-          max: 3840,
-        },
-        defaultValue: 0,
-      },
-      {
-        id: 'VHS.AdvancedPreviewsDeadline',
-        category: ['🎥🅥🅗🅢', 'Previews', 'Deadline'],
-        name: 'Deadline',
-        tooltip: 'Determines how much time can be spent when encoding advanced previews. Realtime results in reduced quality, but good will likely cause the preview to stutter as initial generation occurs',
-        type: 'combo',
-        options: ['realtime', 'good'],
-        defaultValue: 'realtime',
-      },
-      {
-        id: 'VHS.AdvancedPreviewsDefaultMute',
-        category: ['🎥🅥🅗🅢', 'Previews', 'Default Mute'],
-        name: 'Mute videos by default',
-        type: 'boolean',
-        defaultValue: false,
-      },
-      {
-        id: 'VHS.LatentPreview',
-        category: ['🎥🅥🅗🅢', 'Sampling', 'Latent Previews'],
-        name: 'Display animated previews when sampling',
-        type: 'boolean',
-        defaultValue: false,
-        onChange(value) {
-            if (!value) {
-                //Remove any previewWidgets
-                for (let id of latentPreviewNodes) {
-                    let n = app.graph.getNodeById(id)
-                    let i = n?.widgets?.findIndex((w) => w.name == 'vhslatentpreview')
-                    if (i >= 0) {
-                        n.widgets.splice(i,1)[0].onRemove()
-                    }
-                }
-                latentPreviewNodes = new Set()
-            }
-        },
-      },
-      {
-        id: "VHS.LatentPreviewRate",
-        category: ['🎥🅥🅗🅢', 'Sampling', 'Latent Preview Rate'],
-        name: "Playback rate override.",
-        type: 'number',
-        attrs: {
-          min: 0,
-          step: 1,
-          max: 60
-        },
-        tooltip:
-          'Force a specific frame rate for the playback of latent frames. This should not be confused with the output frame rate and will not match for video models.',
-        defaultValue: 0,
-      },
-      {
-        id: 'VHS.MetadataImage',
-        category: ['🎥🅥🅗🅢', 'Output', 'MetadataImage'],
-        name: 'Save png of first frame for metadata',
-        type: 'boolean',
-        defaultValue: true,
-      },
-      {
-        id: 'VHS.KeepIntermediate',
-        category: ['🎥🅥🅗🅢', 'Output', 'Keep Intermediate'],
-        name: 'Keep required intermediate files after sucessful execution',
-        type: 'boolean',
-        defaultValue: true,
-      },
-    ],
+    get settings() {
+        // Return translated settings from VHS.settings.js instead of hardcoded English
+        return getTranslatedSettings();
+    },
 
     async beforeRegisterNodeDef(nodeType, nodeData, app) {
         if(nodeData?.name?.startsWith("VHS_")) {

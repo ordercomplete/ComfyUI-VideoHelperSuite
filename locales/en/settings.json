@@ -1,0 +1,34 @@
+{
+  "VHS.AdvancedPreviews": {
+    "name": "Advanced Previews",
+    "tooltip": "Automatically transcode previews on request. Required for advanced functionality"
+  },
+  "VHS.AdvancedPreviewsMinWidth": {
+    "name": "Minimum preview width",
+    "tooltip": "Advanced previews have their resolution downscaled to the node size for performance. While a node can be resized to increase preview quality, a minimum width can be set that previews won't be downscaled beneath. Preveiws will never be upscaled, so this can safely be set large."
+  },
+  "VHS.AdvancedPreviewsDeadline": {
+    "name": "Deadline",
+    "tooltip": "Determines how much time can be spent when encoding advanced previews. Realtime results in reduced quality, but good will likely cause the preview to stutter as initial generation occurs"
+  },
+  "VHS.AdvancedPreviewsDefaultMute": {
+    "name": "Mute videos by default",
+    "tooltip": ""
+  },
+  "VHS.LatentPreview": {
+    "name": "Display animated previews when sampling",
+    "tooltip": ""
+  },
+  "VHS.LatentPreviewRate": {
+    "name": "Playback rate override.",
+    "tooltip": "Force a specific frame rate for the playback of latent frames. This should not be confused with the output frame rate and will not match for video models."
+  },
+  "VHS.MetadataImage": {
+    "name": "Save png of first frame for metadata",
+    "tooltip": ""
+  },
+  "VHS.KeepIntermediate": {
+    "name": "Keep required intermediate files after sucessful execution",
+    "tooltip": ""
+  }
+}
